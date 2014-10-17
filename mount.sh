@@ -3,8 +3,9 @@
 BOOTHDD="sda1"
 ROOTHDD="sda2"
 
-mount --bind /dev /mnt/"$ROOTHDD"/dev
-mount --bind /proc /mnt/"$ROOTHDD"/proc
-mount --bind /sys /mnt/"$ROOTHDD"/sys
+mount /dev/"$ROOTHDD" /mnt
+mount /dev/"$BOOTHDD" /mnt/boot
 
-mount /dev/sda1 /mnt/"$ROOTHDD"/boot
+mount --bind /dev /mnt/dev
+mount --bind /proc /mnt/proc
+mount --bind /sys /mnt/sys

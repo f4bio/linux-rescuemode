@@ -3,8 +3,9 @@
 BOOTHDD="sda1"
 ROOTHDD="sda2"
 
-umount /mnt/"$ROOTHDD"/dev
-umount /mnt/"$ROOTHDD"/proc
-umount /mnt/"$ROOTHDD"/sys
+umount /mnt/dev
+umount /mnt/proc
+umount /mnt/sys
 
-umount /mnt/"$ROOTHDD"/boot
+umount /mnt/boot
+umount /mnt
