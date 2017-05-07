@@ -1,7 +1,9 @@
 #!/bin/bash
 
-BOOTHDD="sda1"
-ROOTHDD="sda2"
+BOOTHDD=${1:-"sda1"}
+ROOTHDD=${2:-"sda3"}
+
+echo "did you exit chroot?"
 
 umount /mnt/dev
 umount /mnt/proc
