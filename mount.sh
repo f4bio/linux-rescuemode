@@ -1,7 +1,10 @@
 #!/bin/bash
 
-BOOTHDD=${1:-"sda1"}
-ROOTHDD=${2:-"sda3"}
+read -p "Enter boot hdd id [sda1]: " inBootHdd
+read -p "Enter boot hdd id [sda3]: " inRootHdd
+
+export BOOTHDD=${inBootHdd:-sda1}
+export ROOTHDD=${inRootHdd:-sda3}
 
 mount /dev/"$ROOTHDD" /mnt
 mount /dev/"$BOOTHDD" /mnt/boot
