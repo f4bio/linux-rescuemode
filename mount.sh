@@ -19,4 +19,4 @@ mount --bind /dev "$MOUNTPATH"/dev
 mount --bind /proc "$MOUNTPATH"/proc
 mount --bind /sys "$MOUNTPATH"/sys
 
-echo "now run `\$ chroot $MOUNTPATH /bin/bash`"
+echo "now run \"chroot $MOUNTPATH $SHELLPATH\""
