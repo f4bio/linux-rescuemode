@@ -1,13 +1,17 @@
 #!/bin/bash
 
-BOOTHDD=${1:-"sda1"}
-ROOTHDD=${2:-"sda3"}
+read -p "Enter mount path [$MOUNTPATH]: " inMountPath
 
-echo "did you exit chroot?"
+read -p "did you exit chroot? [Y/n]: " yN
 
-umount /mnt/dev
-umount /mnt/proc
-umount /mnt/sys
+if [ "$yN" = "n" ]; then
+  echo "exit chroot and run this script again"
+  exit 1
+fi
 
-umount /mnt/boot
-umount /mnt
+umount "$MOUNTPATH"/dev
+umount "$MOUNTPATH"/proc
+umount "$MOUNTPATH"/sys
+
+umount "$MOUNTPATH"/boot
+umount "$MOUNTPATH"
