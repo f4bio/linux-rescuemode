@@ -1,16 +1,22 @@
 #!/bin/bash
 
-read -p "Enter boot hdd id [sda1]: " inBootHdd
-read -p "Enter boot hdd id [sda3]: " inRootHdd
+read -p "Enter boot partition [/dev/sda1]: " inBootPartition
+read -p "Enter boot partition [/dev/sda3]: " inRootPartition
+read -p "Enter mount path [/mnt/custom]: " inMountPath
+read -p "Enter shell path [/bin/bash]: " inShellPath
 
-export BOOTHDD=${inBootHdd:-sda1}
-export ROOTHDD=${inRootHdd:-sda3}
+export BOOTPART=${inBootPartition:-/dev/sda1}
+export ROOTPART=${inRootPartition:-/dev/sda3}
+export MOUNTPATH=${inMountPath:-/mnt/custom}
+export SHELLPATH=${inShellPath:-/bin/bash}
 
-mount /dev/"$ROOTHDD" /mnt
-mount /dev/"$BOOTHDD" /mnt/boot
+mkdir -p "$MOUNTPATH"
 
-mount --bind /dev /mnt/dev
-mount --bind /proc /mnt/proc
-mount --bind /sys /mnt/sys
+mount "$ROOTHDD" "$MOUNTPATH"
+mount "$BOOTHDD" "$MOUNTPATH"/boot
 
-echo "now run `$ chroot /mnt/custom /bin/bash`"
+mount --bind /dev "$MOUNTPATH"/dev
+mount --bind /proc "$MOUNTPATH"/proc
+mount --bind /sys "$MOUNTPATH"/sys
+
+echo "now run `\$ chroot $MOUNTPATH /bin/bash`"
