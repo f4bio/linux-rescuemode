@@ -2,6 +2,8 @@
 
 read -p "Enter mount path [$MOUNTPATH]: " inMountPath
 
+MOUNTPATH=${inMountPath:-/mnt/custom}
+
 read -p "did you exit chroot? [Y/n]: " yN
 
 if [ "$yN" = "n" ]; then
